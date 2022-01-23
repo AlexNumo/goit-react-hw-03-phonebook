@@ -1,12 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class Search extends Component {
-  handleSearch = (event) => {
-    const { value } = event.currentTarget;
-    this.props.onChange(value);
-  };
-  render() {
+function Search ({onChange}) {
     return (
       <form>
         <h2> Your contacts </h2>
@@ -17,14 +12,13 @@ class Search extends Component {
             name="filter"
             title="Name search. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            onChange={this.handleSearch}
+            onChange={onChange}
             required
           />
         </label>
       </form>
     );
   }
-}
 
 export default Search;
 
