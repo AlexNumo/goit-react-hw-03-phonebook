@@ -10,6 +10,20 @@ class Phonebook extends Component {
     contacts: [],
     filter: "",
   };
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({contacts: parsedContacts})
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
 formSubmitHandler = ({ name, number }) => {
     const { contacts } = this.state;
     const contact = {
